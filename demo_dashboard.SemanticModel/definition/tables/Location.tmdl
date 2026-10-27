@@ -1,0 +1,38 @@
+table Location
+	lineageTag: 9fda0f31-574e-4d92-8bbd-24bd9b52a04d
+
+	column Zipcode
+		dataType: string
+		lineageTag: a4e7956b-c5c9-4b5a-9b16-e427ad610a2a
+		summarizeBy: none
+		sourceColumn: Zipcode
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		lineageTag: 8eecd1f0-cb70-47dc-863f-7d05c409f361
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: eb4916aa-2db3-4340-a0c0-afe9cd450b9a
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Location = m
+		mode: import
+		source =
+				let
+				  Source = Sql.Database("TECHATIVE\SQLEXPRESS", "Store"),
+				  #"Navigation 1" = Source{[Schema = "dbo", Item = "Location"]}[Data]
+				in
+				  #"Navigation 1"
+
+	annotation PBI_ResultType = Table
+

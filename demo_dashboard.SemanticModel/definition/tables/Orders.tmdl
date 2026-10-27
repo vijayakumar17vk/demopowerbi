@@ -1,0 +1,22 @@
+table Orders
+	lineageTag: 0b54495a-2c68-4223-be8b-ed45d13f9722
+
+	column Order_ID
+		dataType: string
+		lineageTag: e92b4087-8118-4c26-b8fb-fdfa448c8c70
+		summarizeBy: none
+		sourceColumn: Order_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Orders = m
+		mode: import
+		source =
+				let
+				  Source = Sql.Database("TECHATIVE\SQLEXPRESS", "Store"),
+				  #"Navigation 1" = Source{[Schema = "dbo", Item = "Orders"]}[Data]
+				in
+				  #"Navigation 1"
+
+	annotation PBI_ResultType = Table
+

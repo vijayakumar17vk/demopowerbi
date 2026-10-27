@@ -1,0 +1,93 @@
+table Sales
+	lineageTag: 6cf17c40-e31b-4afc-a60a-5919a384205c
+
+	column Sales_ID
+		dataType: string
+		lineageTag: b3374835-0a68-4de7-96e1-badc9b6b2051
+		summarizeBy: none
+		sourceColumn: Sales_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Product_ID
+		dataType: string
+		lineageTag: 8e48f135-7e92-4860-8f15-b00b834d7715
+		summarizeBy: none
+		sourceColumn: Product_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Order_ID
+		dataType: string
+		lineageTag: 2c5f2c5d-a8e3-4426-aabc-1698a386be25
+		summarizeBy: none
+		sourceColumn: Order_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_ID
+		dataType: string
+		lineageTag: 3802fe99-e179-4def-adb2-cab4c634308d
+		summarizeBy: none
+		sourceColumn: Customer_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Zipcode
+		dataType: string
+		lineageTag: 0f4ced38-4e51-43ff-bb4d-67c5e93b966c
+		summarizeBy: none
+		sourceColumn: Zipcode
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sales_Amount
+		dataType: double
+		lineageTag: a102490d-9908-45e5-b412-c884e99041a4
+		summarizeBy: sum
+		sourceColumn: Sales_Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: 0e7704d2-23a2-408c-b2f5-3124850929de
+		summarizeBy: sum
+		sourceColumn: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column Discount
+		dataType: double
+		lineageTag: 188b5998-4cda-4cd2-bc00-7e8391df336d
+		summarizeBy: sum
+		sourceColumn: Discount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Price
+		dataType: double
+		lineageTag: 04dc85e3-1ffd-4b22-933b-b4ce3f2163f6
+		summarizeBy: sum
+		sourceColumn: Price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Sales = m
+		mode: import
+		source =
+				let
+				  Source = Sql.Database("TECHATIVE\SQLEXPRESS", "Store"),
+				  #"Navigation 1" = Source{[Schema = "dbo", Item = "Sales"]}[Data]
+				in
+				  #"Navigation 1"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,30 @@
+table Customer
+	lineageTag: 9baaae0f-fd0c-4f97-af81-346d4a381949
+
+	column Customer_ID
+		dataType: string
+		lineageTag: 7dfc0e6a-9892-43eb-9008-15a03d854f4d
+		summarizeBy: none
+		sourceColumn: Customer_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_Name
+		dataType: string
+		lineageTag: 0ec68523-0140-455d-86de-d88ce9684aa0
+		summarizeBy: none
+		sourceColumn: Customer_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Customer = m
+		mode: import
+		source =
+				let
+				  Source = Sql.Database("TECHATIVE\SQLEXPRESS", "Store"),
+				  #"Navigation 1" = Source{[Schema = "dbo", Item = "Customer"]}[Data]
+				in
+				  #"Navigation 1"
+
+	annotation PBI_ResultType = Table
+

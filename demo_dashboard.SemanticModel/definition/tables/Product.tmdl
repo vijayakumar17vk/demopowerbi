@@ -1,0 +1,54 @@
+table Product
+	lineageTag: 4ccd9895-1dc9-4a12-84a6-ebc82f923abc
+
+	column Product_ID
+		dataType: string
+		lineageTag: 3168bfe6-c919-411e-8008-295dfec728ec
+		summarizeBy: none
+		sourceColumn: Product_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Product_Name
+		dataType: string
+		lineageTag: 69a0dfc5-b05f-455d-b8c0-1ac0456e2457
+		summarizeBy: none
+		sourceColumn: Product_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Category
+		dataType: string
+		lineageTag: aa01ae11-864f-4946-9993-e0b9191d6444
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sub_Category
+		dataType: string
+		lineageTag: 40b87b13-5ff7-4913-ae9f-394b254b20d1
+		summarizeBy: none
+		sourceColumn: Sub_Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Brand
+		dataType: string
+		lineageTag: cf32691f-8f37-4ae6-97fd-a0d337f892b6
+		summarizeBy: none
+		sourceColumn: Brand
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Product = m
+		mode: import
+		source =
+				let
+				  Source = Sql.Database("TECHATIVE\SQLEXPRESS", "Store"),
+				  #"Navigation 1" = Source{[Schema = "dbo", Item = "Product"]}[Data]
+				in
+				  #"Navigation 1"
+
+	annotation PBI_ResultType = Table
+

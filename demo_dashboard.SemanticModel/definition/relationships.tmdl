@@ -1,0 +1,24 @@
+relationship cef2c9ff-6a2f-7d7c-e241-2cb26c7d9e51
+	fromColumn: Sales.Customer_ID
+	toColumn: Customer.Customer_ID
+
+	annotation PBI_IsFromSource = FS
+
+relationship 3f320116-7ccc-64e6-6a63-7e6c6b31b1f8
+	fromColumn: Sales.Zipcode
+	toColumn: Location.Zipcode
+
+	annotation PBI_IsFromSource = FS
+
+relationship a9f33f39-1f8f-2f6e-aca0-6d068e153e60
+	fromColumn: Sales.Order_ID
+	toColumn: Orders.Order_ID
+
+	annotation PBI_IsFromSource = FS
+
+relationship abfdae2e-b825-234e-e0b7-b12c73b1adbf
+	fromColumn: Sales.Product_ID
+	toColumn: Product.Product_ID
+
+	annotation PBI_IsFromSource = FS
+
