@@ -27,7 +27,8 @@
                 }
               },
               "queryRef": "Product.Sub_Category",
-              "nativeQueryRef": "Sub_Category"
+              "nativeQueryRef": "Sub_Category",
+              "active": true
             }
           ]
         },
