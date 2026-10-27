@@ -10,29 +10,10 @@
     "tabOrder": 5002
   },
   "visual": {
-    "visualType": "barChart",
+    "visualType": "decompositionTreeVisual",
     "query": {
       "queryState": {
-        "Category": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Location"
-                    }
-                  },
-                  "Property": "State"
-                }
-              },
-              "queryRef": "Location.State",
-              "nativeQueryRef": "State",
-              "active": true
-            }
-          ]
-        },
-        "Y": {
+        "Analyze": {
           "projections": [
             {
               "field": {
@@ -52,6 +33,25 @@
               },
               "queryRef": "Sum(Sales.Sales_Amount)",
               "nativeQueryRef": "Sum of Sales_Amount"
+            }
+          ]
+        },
+        "ExplainBy": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Location"
+                    }
+                  },
+                  "Property": "State"
+                }
+              },
+              "queryRef": "Location.State",
+              "nativeQueryRef": "State",
+              "active": true
             }
           ]
         }
@@ -79,6 +79,38 @@
         ],
         "isDefaultSort": true
       }
+    },
+    "expansionStates": [
+      {
+        "roles": [
+          "ExplainBy"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "Location.State"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          }
+        ],
+        "root": {}
+      }
+    ],
+    "objects": {
+      "tree": [
+        {
+          "properties": {
+            "effectiveBarsPerLevel": {
+              "expr": {
+                "Literal": {
+                  "Value": "3L"
+                }
+              }
+            }
+          }
+        }
+      ]
     },
     "drillFilterOtherVisuals": true
   }
